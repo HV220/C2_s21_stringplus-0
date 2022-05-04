@@ -455,12 +455,52 @@ START_TEST(test_s21_to_upper) {
   char *res = s21_to_upper("test");
   ck_assert_str_eq(res, "TEST");
   free(res);
+
+  res = s21_to_upper(" t e s t");
+  ck_assert_str_eq(res, " T E S T");
+  free(res);
+
+  res = s21_to_upper("test001");
+  ck_assert_str_eq(res, "TEST001");
+  free(res);
+
+  res = s21_to_upper("!test!");
+  ck_assert_str_eq(res, "!TEST!");
+  free(res);
+
+  res = s21_to_upper(" ");
+  ck_assert_str_eq(res, " ");
+  free(res);
+
+  res = s21_to_upper("!*_*!");
+  ck_assert_str_eq(res, "!*_*!");
+  free(res);
 }
 END_TEST
 // s21_to_lower
 START_TEST(test_s21_to_lower) {
   char *res = s21_to_lower("TEST");
   ck_assert_str_eq(res, "test");
+  free(res);
+
+  res = s21_to_lower(" T E S T");
+  ck_assert_str_eq(res, " t e s t");
+  free(res);
+
+  res = s21_to_lower("TEST001");
+  ck_assert_str_eq(res, "test001");
+  free(res);
+
+  res = s21_to_lower("!TEST!");
+  ck_assert_str_eq(res, "!test!");
+  free(res);
+
+  res = s21_to_lower(" ");
+  ck_assert_str_eq(res, " ");
+  free(res);
+
+  res = s21_to_lower("!*_*!");
+  ck_assert_str_eq(res, "!*_*!");
   free(res);
 }
 END_TEST
@@ -472,12 +512,62 @@ START_TEST(test_s21_insert) {
   result = s21_insert(str1, str2, 2);
   ck_assert_str_eq(result, "Tequestst");
   free(result);
+
+  str1 = "The test";
+  str2 = " perfect";
+  result = s21_insert(str1, str2, 3);
+  ck_assert_str_eq(result, "The perfect test");
+  free(result);
+
+  str1 = "Insert in";
+  str2 = " end";
+  result = s21_insert(str1, str2, 9);
+  ck_assert_str_eq(result, "Insert in end");
+  free(result);
+
+  str1 = " with insert";
+  str2 = "Start";
+  result = s21_insert(str1, str2, 0);
+  ck_assert_str_eq(result, "Start with insert");
+  free(result);
+
+  str1 = "Newspace";
+  str2 = " ";
+  result = s21_insert(str1, str2, 3);
+  ck_assert_str_eq(result, "New space");
+  free(result);
+
+  str1 = "";
+  str2 = " ";
+  result = s21_insert(str1, str2, 0);
+  ck_assert_str_eq(result, " ");
+  free(result);
 }
 END_TEST
 // s21_trim
 START_TEST(test_s21_trim) {
   char *res = s21_trim("testc", "c");
   ck_assert_str_eq(res, "test");
+  free(res);
+
+  res = s21_trim(" test ", " ");
+  ck_assert_str_eq(res, "test");
+  free(res);
+
+  res = s21_trim(" ", " ");
+  ck_assert_str_eq(res, "");
+  free(res);
+
+  res = s21_trim("*te*st*", "*");
+  ck_assert_str_eq(res, "te*st");
+  free(res);
+
+  res = s21_trim(" te st001", " ");
+  ck_assert_str_eq(res, "te st001");
+  free(res);
+
+  res = s21_trim(" /*()", ")(/ *");
+  ck_assert_str_eq(res, "");
   free(res);
 }
 END_TEST
