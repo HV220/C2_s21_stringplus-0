@@ -75,6 +75,9 @@ START_TEST(test_s21_memmove) {
   ck_assert_msg(
       s21_memmove(&str1[0], &str1[1], 4) == memmove(&str1[0], &str1[1], 4),
       "s21_memmove 7");
+  ck_assert_msg(
+      s21_memmove(&str1[3], &str1[0], 1) == memmove(&str1[3], &str1[0], 1),
+      "s21_memmove 8");
 }
 END_TEST
 // 5
@@ -171,11 +174,16 @@ END_TEST
 // 11
 START_TEST(test_s21_strcpy) {
   char str1[] = "Hello", str2[] = "World", str3[] = "", str4[32] = "";
+  char str5[100] = "Check now", str6[] = " this\0 string", str7[] = "\0 string", str8[32] = "\0";
   ck_assert_msg(s21_strcpy(str1, str2) == strcpy(str1, str2), "s21_strcpy 1");
   ck_assert_msg(s21_strcpy(str2, str1) == strcpy(str2, str1), "s21_strcpy 2");
   ck_assert_msg(s21_strcpy(str1, str3) == strcpy(str1, str3), "s21_strcpy 3");
   ck_assert_msg(s21_strcpy(str4, str1) == strcpy(str4, str1), "s21_strcpy 4");
   ck_assert_msg(s21_strcpy(str4, str3) == strcpy(str4, str3), "s21_strcpy 5");
+
+  ck_assert_msg(s21_strcpy(&str5[5], str6) == strcpy(&str5[5], str6), "s21_strcpy 6");
+  ck_assert_msg(s21_strcpy(&str5[5], str7) == strcpy(&str5[5], str7), "s21_strcpy 7");
+  ck_assert_msg(s21_strcpy(&str5[5], str8) == strcpy(&str5[5], str8), "s21_strcpy 8");
 }
 END_TEST
 // 12
