@@ -162,13 +162,17 @@ s21_size_t s21_strlen(const char *str) {
 }
 // 16
 char *s21_strpbrk(const char *str1, const char *str2) {
-  for (int i = 0; str1[i] != '\0'; i++) {
-    for (int j = 0; str2[j] != '\0'; j++) {
+  int status = 0;
+  int i;
+  for (i = 0; status == 0 && str1[i] != '\0'; i++) {
+    for (int j = 0; status == 0 && str2[j] != '\0'; j++) {
       if (str1[i] == str2[j]) {
-        return (char *)str1 + i;
+        status = 1;
+        i--;
       }
     }
   }
+  return status ? (char *)str1 + i : S21_NULL;
 }
 // 17
 char *s21_strrchr(const char *str, int c) {
