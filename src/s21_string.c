@@ -169,7 +169,6 @@ char *s21_strpbrk(const char *str1, const char *str2) {
             }
         }
     }
-    return S21_NULL;
 }
 // 17
 char *s21_strrchr(const char *str, int c) {
