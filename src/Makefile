@@ -1,8 +1,8 @@
-.PHONY: all clean test s21_string.a check rebuild gcov open gcov_report
+.PHONY: all clean test s21_string.a check rebuild open gcov_report
 CC=gcc
 CFLAGS=-Wall -Wextra -Werror -std=c11
 LINUX=-lsubunit -lrt -lpthread -lm
-LIBS = -lcheck
+LIBS=-lcheck
 CFLAGS=-fprofile-arcs -ftest-coverage
 OS=$(shell uname -s)
 
@@ -20,21 +20,21 @@ s21_string.o: s21_string.c
 
 test: s21_string.a
 ifeq ($(OS), Darwin)
-	$(CC) test.c s21_string.a -o test $(LIBS)
-	./test
+	$(CC) test.c s21_string.a -o test.out $(LIBS)
+	./test.out
 else
-	$(CC) test.c s21_string.a -o test $(LIBS) $(LINUX)
-	./test
+	$(CC) test.c s21_string.a -o test.out $(LIBS) $(LINUX)
+	./test.out
 endif
 
 gcov_report: s21_string.a
 ifeq ($(OS), Darwin)
-	$(CC) $(CFLAGS) test.c s21_string.c s21_string.a -o test $(LIBS)
+	$(CC) $(CFLAGS) test.c s21_string.c s21_string.a -o test.out $(LIBS)
 else
-	$(CC) $(CFLAGS) test.c s21_string.c s21_string.a -o test $(LIBS) $(LINUX)
+	$(CC) $(CFLAGS) test.c s21_string.c s21_string.a -o test.out $(LIBS) $(LINUX)
 endif
-	./test
-	lcov -t "test" -o test.info -c -d .
+	./test.out
+	lcov -t "test.out" -o test.info -c -d .
 	genhtml -o report test.info
 
 open:
@@ -46,9 +46,9 @@ check:
 	cppcheck --enable=all --suppress=missingIncludeSystem *.c *.h
 	python3 ../materials/linters/cpplint.py --extensions=c *.c *.h
 	make test
-	CK_FORK=no leaks --atExit -- ./test
+	CK_FORK=no leaks --atExit -- ./test.out
 	make clean
 
 clean:
-	rm -rf *.gc* *.o *.a *.out *.info test
+	rm -rf *.gc* *.o *.a *.out *.info test.out
 	rm -rf report
