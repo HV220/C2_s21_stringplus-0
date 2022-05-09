@@ -20,10 +20,10 @@ s21_string.o: s21_string.c
 
 test: s21_string.a
 ifeq ($(OS), Darwin)
-	$(CC) test.c s21_string.a -o test.out $(LIBS)
+	$(CC) $(CFLAGS) test.c s21_string.a -o test.out $(LIBS)
 	./test.out
 else
-	$(CC) test.c s21_string.a -o test.out $(LIBS) $(LINUX)
+	$(CC) $(CFLAGS) test.c s21_string.a -o test.out $(LIBS) $(LINUX)
 	./test.out
 endif
 
