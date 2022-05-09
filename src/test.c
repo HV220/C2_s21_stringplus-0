@@ -96,8 +96,7 @@ START_TEST(test_s21_memmove) {
 END_TEST
 
 START_TEST(test_s21_memset) {
-    char str1[9] = "abcdefgh", str2[1] = "";
-    char str3[9] = "abcdefgh", str4[1] = "";
+    char str1[9] = "abcdefgh", str2[1] = "", str3[9] = "abcdefgh", str4[1] = "";
     s21_memset(str1, 'i', 8);
     memset(str3, 'i', 8);
     ck_assert_str_eq(str1, str3);
@@ -281,7 +280,7 @@ START_TEST(test_s21_strncpy) {
                   "s21_strncpy 8");
 }
 END_TEST
-// 13
+
 START_TEST(test_s21_strcspn) {
     char str1[] = "jkflkfgdkhslkhgsdk", str2[] = "gd", str3[] = "";
     ck_assert_msg(s21_strcspn(str1, str2) == strcspn(str1, str2),
@@ -549,12 +548,10 @@ START_TEST(test_s21_sscanf) {
         "sscanf 4.4");
     ck_assert_msg(e3 == e4, "sscanf 4.4");
     ck_assert_msg(g3 == g4, "sscanf 4.4");
-    ck_assert_int_eq(
-       s21_sscanf(" -123abcdeasd", "%2li%2lo", &e1, &e2),
-        sscanf(" -123abcdeasd", "%2li%2lo", &r1, &r2));
-    ck_assert_int_eq(
-       s21_sscanf(" -123abcdeasd", "dfdf"),
-       sscanf(" -123abcdeasd", "dfdf"));
+    ck_assert_int_eq(s21_sscanf(" -123abcdeasd", "%2li%2lo", &e1, &e2),
+                     sscanf(" -123abcdeasd", "%2li%2lo", &r1, &r2));
+    ck_assert_int_eq(s21_sscanf(" -123abcdeasd", "dfdf"),
+                     sscanf(" -123abcdeasd", "dfdf"));
 }
 END_TEST
 
