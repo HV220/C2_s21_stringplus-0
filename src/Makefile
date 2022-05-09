@@ -3,7 +3,7 @@ CC=gcc
 CFLAGS=-Wall -Wextra -Werror -std=c11
 LINUX=-lsubunit -lrt -lpthread -lm
 LIBS=-lcheck
-CFLAGS=-fprofile-arcs -ftest-coverage
+LFLAGS=-fprofile-arcs -ftest-coverage
 OS=$(shell uname -s)
 
 all: clean s21_string.a test
@@ -29,9 +29,9 @@ endif
 
 gcov_report: s21_string.a
 ifeq ($(OS), Darwin)
-	$(CC) $(CFLAGS) test.c s21_string.c s21_string.a -o test.out $(LIBS)
+	$(CC) $(CFLAGS) $(LFLAGS) test.c s21_string.c s21_string.a -o test.out $(LIBS)
 else
-	$(CC) $(CFLAGS) test.c s21_string.c s21_string.a -o test.out $(LIBS) $(LINUX)
+	$(CC) $(CFLAGS) $(LFLAGS) test.c s21_string.c s21_string.a -o test.out $(LIBS) $(LINUX)
 endif
 	./test.out
 	lcov -t "test.out" -o test.info -c -d .
