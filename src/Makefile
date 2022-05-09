@@ -34,7 +34,7 @@ else
 	$(CC) $(CFLAGS) $(LFLAGS) test.c s21_string.c s21_string.a -o test.out $(LIBS) $(LINUX)
 endif
 	./test.out
-	lcov -t "test.out" -o test.info -c -d .
+	lcov -t "test" -o test.info -c -d .
 	genhtml -o report test.info
 
 open:
