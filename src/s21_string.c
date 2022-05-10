@@ -76,15 +76,11 @@ char *s21_strchr(const char *str, int c) {
 }
 
 int s21_strcmp(const char *str1, const char *str2) {
-    const unsigned char *s1 = (const unsigned char *)str1;
-    const unsigned char *s2 = (const unsigned char *)str2;
-    unsigned char c1, c2;
-    do {
-        c1 = (unsigned char)*s1++;
-        c2 = (unsigned char)*s2++;
-        if (c1 == '\0') return c1 - c2;
-    } while (c1 == c2);
-    return c1 - c2;
+    while (*str1 && *str1 == *str2) {
+        str1++;
+        str2++;
+    }
+    return *str1 - *str2;
 }
 
 int s21_strncmp(const char *str1, const char *str2, s21_size_t n) {
