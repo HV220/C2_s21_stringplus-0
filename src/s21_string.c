@@ -1135,11 +1135,13 @@ int x_convert(int value) {
         value = 15;
     return value;
 }
+
 int o_valid(int value) {
     int res = 0;
     if (value >= '0' && value <= '7') res = 1;
     return res;
 }
+
 void strtoi(int *res, struct fsc *S, int n, int *path) {
     if (*res == 0) {
         *path = 0;
