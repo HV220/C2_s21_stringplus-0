@@ -177,7 +177,6 @@ START_TEST(test_s21_strcmp) {
     ck_assert_msg(s21_strcmp(str1, str5) == strcmp(str1, str5), "s21_strcmp 6");
 
     ck_assert_int_eq(s21_strcmp(str1, str3), strcmp(str1, str3));
-
 }
 END_TEST
 
