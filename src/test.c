@@ -241,6 +241,9 @@ START_TEST(test_s21_strncpy) {
     s21_strncpy(str1, str2, 5);
     strncpy(str4, str5, 5);
     ck_assert_str_eq(str1, str4);
+    s21_strncpy(str1, str2, 0);
+    strncpy(str4, str5, 0);
+    ck_assert_str_eq(str1, str4);
     s21_strncpy(str1, str2, 20);
     strncpy(str4, str5, 20);
     ck_assert_str_eq(str1, str4);
@@ -250,6 +253,9 @@ START_TEST(test_s21_strncpy) {
     s21_strncpy(str2, str1, 8);
     strncpy(str5, str4, 8);
     ck_assert_str_eq(str1, str4);
+    s21_strncpy(str2, str1, 0);
+    strncpy(str5, str4, 0);
+    ck_assert_str_eq(str1, str4);
     s21_strncpy(str2, str1, 15);
     strncpy(str5, str4, 15);
     ck_assert_str_eq(str1, str4);
@@ -258,12 +264,16 @@ START_TEST(test_s21_strncpy) {
     ck_assert_str_eq(str1, str4);
     ck_assert_msg(s21_strncpy(str1, str2, 5) == strncpy(str1, str2, 5),
                   "s21_strncpy 1");
+    ck_assert_msg(s21_strncpy(str1, str2, 0) == strncpy(str1, str2, 0),
+                  "s21_strncpy 2");
     ck_assert_msg(s21_strncpy(str1, str2, 20) == strncpy(str1, str2, 20),
                   "s21_strncpy 3");
     ck_assert_msg(s21_strncpy(str1, str2, 15) == strncpy(str1, str2, 15),
                   "s21_strncpy 4");
     ck_assert_msg(s21_strncpy(str2, str1, 8) == strncpy(str2, str1, 8),
                   "s21_strncpy 5");
+    ck_assert_msg(s21_strncpy(str2, str1, 0) == strncpy(str2, str1, 0),
+                  "s21_strncpy 6");
     ck_assert_msg(s21_strncpy(str2, str1, 15) == strncpy(str2, str1, 15),
                   "s21_strncpy 7");
     ck_assert_msg(s21_strncpy(str1, str3, 8) == strncpy(str1, str3, 8),
