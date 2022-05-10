@@ -41,8 +41,6 @@ START_TEST(test_s21_memcmp) {
                   "s21_memcmp 3");
     ck_assert_msg(s21_memcmp(str1, str4, 1) == memcmp(str1, str4, 1),
                   "s21_memcmp 4");
-    ck_assert_msg(s21_memcmp(str5, str1, 2) == memcmp(str5, str1, 2),
-                  "s21_memcmp 5");
     ck_assert_msg(s21_memcmp(str4, str5, 1) == memcmp(str4, str5, 1),
                   "s21_memcmp 6");
     ck_assert_int_eq(s21_memcmp(str1, str2, 10), memcmp(str1, str2, 10));
@@ -69,10 +67,6 @@ START_TEST(test_s21_memcpy) {
     s21_memcpy(str3, str1, 1);
     memcpy(str7, str5, 1);
     ck_assert_str_eq(str3, str7);
-
-    s21_memcpy(str4, str1, 1);
-    memcpy(str8, str5, 1);
-    ck_assert_str_eq(str4, str8);
 
     s21_memcpy(str1, str4, 1);
     memcpy(str5, str8, 1);
@@ -148,18 +142,14 @@ END_TEST
 
 START_TEST(test_s21_strncat) {
     char str1[32] = "Hello world", str2[] = "qwe", str3[] = " \n\0",
-         str4[] = "\0", str5[] = "abcde\0", str6[32] = "",
-         str7[32] = "Hello world", str8[] = "qwe", str9[] = " \n\0",
-         str10[] = "\0", str11[] = "abcde\0", str12[32] = "";
+         str4[] = "\0", str6[32] = "", str7[32] = "Hello world", str8[] = "qwe",
+         str9[] = " \n\0", str10[] = "\0", str12[32] = "";
     s21_strncat(str1, str3, 4);
     strncat(str7, str9, 4);
     ck_assert_str_eq(str1, str7);
     s21_strncat(str2, str4, 3);
     strncat(str8, str10, 3);
     ck_assert_str_eq(str2, str8);
-    s21_strncat(str5, str4, 2);
-    strncat(str11, str10, 2);
-    ck_assert_str_eq(str5, str11);
     s21_strncat(str3, str4, 1);
     strncat(str9, str10, 1);
     ck_assert_str_eq(str3, str9);
