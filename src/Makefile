@@ -46,7 +46,11 @@ check:
 	cppcheck --enable=all --suppress=missingIncludeSystem *.c *.h
 	python3 ../materials/linters/cpplint.py --extensions=c *.c *.h
 	make test
+ifeq ($(OS), Darwin)
 	CK_FORK=no leaks --atExit -- ./test.out
+else
+	valgrind ./test.out --leak-check=full
+endif
 	make clean
 
 clean:
