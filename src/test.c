@@ -70,10 +70,6 @@ START_TEST(test_s21_memcpy) {
     memcpy(str7, str5, 1);
     ck_assert_str_eq(str3, str7);
 
-    memcpy(str8, str5, 1);
-    s21_memcpy(str4, str1, 1);
-    ck_assert_str_eq(str4, str8);
-
     s21_memcpy(str1, str4, 1);
     memcpy(str5, str8, 1);
     ck_assert_str_eq(str1, str5);
