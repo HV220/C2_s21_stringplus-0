@@ -19,14 +19,15 @@ int s21_memcmp(const void *str1, const void *str2, s21_size_t n) {
 }
 
 void *s21_memcpy(void *dest, const void *src, s21_size_t n) {
-    char *pszDest = (char *)dest;
-    const char *pszSource = (const char *)src;
-    if ((pszDest != NULL) && (pszSource != NULL)) {
-        while (--n) {
-            *(pszDest++) = *(pszSource++);
+    s21_size_t i;
+    if (dest != src) {
+        i = 0;
+        while (i < n) {
+            ((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
+            i++;
         }
     }
-    return dest;
+    return (dest);
 }
 
 void *s21_memmove(void *dest, const void *src, s21_size_t n) {
