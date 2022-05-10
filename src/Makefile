@@ -27,11 +27,11 @@ else
 	./test.out
 endif
 
-gcov_report: s21_string.a
+gcov_report:
 ifeq ($(OS), Darwin)
-	$(CC) $(CFLAGS) $(LFLAGS) test.c s21_string.a -o test.out $(LIBS)
+	$(CC) $(CFLAGS) $(LFLAGS) test.c s21_string.c -o test.out $(LIBS)
 else
-	$(CC) $(CFLAGS) $(LFLAGS) test.c s21_string.a -o test.out $(LIBS) $(LINUX)
+	$(CC) $(CFLAGS) $(LFLAGS) test.c s21_string.c -o test.out $(LIBS) $(LINUX)
 endif
 	./test.out
 	lcov -t "test" -o test.info -c -d .
