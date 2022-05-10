@@ -57,18 +57,23 @@ END_TEST
 START_TEST(test_s21_memcpy) {
     char str1[] = "abcd", str2[] = "efgh", str3[] = "efghi", str4[] = "",
          str5[] = "abcd", str6[] = "efgh", str7[] = "efghi", str8[] = "";
+
     s21_memcpy(str1, str2, 4);
     memcpy(str5, str6, 4);
     ck_assert_str_eq(str1, str5);
+
     s21_memcpy(str1, str3, 4);
     memcpy(str5, str7, 4);
     ck_assert_str_eq(str1, str5);
+
     s21_memcpy(str3, str1, 1);
     memcpy(str7, str5, 1);
     ck_assert_str_eq(str3, str7);
-    s21_memcpy(str4, str1, 1);
+
     memcpy(str8, str5, 1);
+    s21_memcpy(str4, str1, 1);
     ck_assert_str_eq(str4, str8);
+
     s21_memcpy(str1, str4, 1);
     memcpy(str5, str8, 1);
     ck_assert_str_eq(str1, str5);
