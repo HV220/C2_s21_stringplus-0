@@ -19,7 +19,8 @@ int s21_memcmp(const void *str1, const void *str2, s21_size_t n) {
 }
 
 void *s21_memcpy(void *dest, const void *src, s21_size_t n) {
-    for (size_t i = 0; i < n; i++) *((unsigned char *)dest + i) = *((unsigned char *)src + i);
+    for (size_t i = 0; i < n; i++)
+        *((unsigned char *)dest + i) = *((unsigned char *)src + i);
     return dest;
 }
 
@@ -75,11 +76,15 @@ char *s21_strchr(const char *str, int c) {
 }
 
 int s21_strcmp(const char *str1, const char *str2) {
-    while (*str1 && *str1 == *str2) {
-        str1++;
-        str2++;
-    }
-    return *str1 - *str2;
+    const unsigned char *s1 = (const unsigned char *)str1;
+    const unsigned char *s2 = (const unsigned char *)str2;
+    unsigned char c1, c2;
+    do {
+        c1 = (unsigned char)*s1++;
+        c2 = (unsigned char)*s2++;
+        if (c1 == '\0') return c1 - c2;
+    } while (c1 == c2);
+    return c1 - c2;
 }
 
 int s21_strncmp(const char *str1, const char *str2, s21_size_t n) {
