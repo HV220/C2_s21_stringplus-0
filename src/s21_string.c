@@ -19,15 +19,12 @@ int s21_memcmp(const void *str1, const void *str2, s21_size_t n) {
 }
 
 void *s21_memcpy(void *dest, const void *src, s21_size_t n) {
-    s21_size_t i;
-    if (dest != src) {
-        i = 0;
-        while (i < n) {
-            ((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
-            i++;
-        }
+    unsigned char *d = dest;
+    const char *s = src;
+    for (s21_size_t i = 0; i < n; i++) {
+        d[i] = s[i];
     }
-    return (dest);
+    return d;
 }
 
 void *s21_memmove(void *dest, const void *src, s21_size_t n) {
