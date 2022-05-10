@@ -4,29 +4,18 @@
 
 START_TEST(test_s21_memchr) {
     char str1[] = "Hello world!", str2[] = "";
-    ck_assert_msg(s21_memchr(str1, 'w', 13) == memchr(str1, 'w', 13),
-                  "s21_memchr 1");
-    ck_assert_msg(s21_memchr(str1, 'a', 13) == memchr(str1, 'a', 13),
-                  "s21_memchr 2");
-    ck_assert_msg(s21_memchr(str1, ' ', 13) == memchr(str1, ' ', 13),
-                  "s21_memchr 3");
-    ck_assert_msg(s21_memchr(str1, '\n', 13) == memchr(str1, '\n', 13),
-                  "s21_memchr 4");
-    ck_assert_msg(s21_memchr(str1, 98, 13) == memchr(str1, 98, 13),
-                  "s21_memchr 5");
-    ck_assert_msg(s21_memchr(str1, 111, 13) == memchr(str1, 111, 13),
-                  "s21_memchr 6");
-    ck_assert_msg(s21_memchr(str2, 'a', 1) == memchr(str2, 'a', 1),
-                  "s21_memchr 7");
-    ck_assert_msg(s21_memchr(str2, ' ', 1) == memchr(str2, ' ', 1),
-                  "s21_memchr 8");
-    ck_assert_msg(s21_memchr(str2, '\n', 1) == memchr(str2, '\n', 1),
-                  "s21_memchr 9");
-    ck_assert_msg(s21_memchr(str1, 'a', 13) == memchr(str1, 'a', 13),
-                  "s21_memchr 2");
-    ck_assert_str_eq(s21_memchr(str1, 'w', 13), memchr(str1, 'w', 13));
-    ck_assert_str_eq(s21_memchr(str1, ' ', 13), memchr(str1, ' ', 13));
-    ck_assert_str_eq(s21_memchr(str1, 111, 13), memchr(str1, 111, 13));
+    // ck_assert_msg(s21_memchr(str1, 'e', 13) == memchr(str1, 'w', 13),
+    //               "s21_memchr 1");
+    ck_assert_ptr_eq(s21_memchr(str1, 'w', 13), memchr(str1, 'w', 13));
+    ck_assert_ptr_eq(s21_memchr(str1, 'a', 13), memchr(str1, 'a', 13));
+    ck_assert_ptr_eq(s21_memchr(str1, ' ', 13), memchr(str1, ' ', 13));
+    ck_assert_ptr_eq(s21_memchr(str1, '\n', 13), memchr(str1, '\n', 13));
+    ck_assert_ptr_eq(s21_memchr(str1, 98, 13), memchr(str1, 98, 13));
+    ck_assert_ptr_eq(s21_memchr(str1, 111, 13), memchr(str1, 111, 13));
+    ck_assert_ptr_eq(s21_memchr(str2, 'a', 1), memchr(str2, 'a', 1));
+    ck_assert_ptr_eq(s21_memchr(str2, ' ', 1), memchr(str2, ' ', 1));
+    ck_assert_ptr_eq(s21_memchr(str2, '\n', 1), memchr(str2, '\n', 1));
+    ck_assert_ptr_eq(s21_memchr(str1, 'a', 13), memchr(str1, 'a', 13));
 }
 END_TEST
 
