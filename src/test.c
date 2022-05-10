@@ -171,12 +171,12 @@ START_TEST(test_s21_strcmp) {
     char str1[] = "abcd", str2[] = "abcd", str3[] = "efgh", str4[] = "efghi",
          str5[] = "";
     ck_assert_msg(s21_strcmp(str1, str2) == strcmp(str1, str2), "s21_strcmp 1");
-    ck_assert_msg(s21_strcmp(str1, str4) == strcmp(str1, str4), "s21_strcmp 3");
     ck_assert_msg(s21_strcmp(str4, str1) == strcmp(str4, str1), "s21_strcmp 4");
     ck_assert_msg(s21_strcmp(str5, str1) == strcmp(str5, str1), "s21_strcmp 5");
     ck_assert_msg(s21_strcmp(str1, str5) == strcmp(str1, str5), "s21_strcmp 6");
 
     ck_assert_int_eq(s21_strcmp(str1, str3), strcmp(str1, str3));
+    ck_assert_int_eq(s21_strcmp(str1, str4), strcmp(str1, str4));
 }
 END_TEST
 
