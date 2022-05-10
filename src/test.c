@@ -168,10 +168,9 @@ START_TEST(test_s21_strchr) {
 END_TEST
 
 START_TEST(test_s21_strcmp) {
-    char str1[] = "abcd", str2[] = "abcd", str3[] = "efgh", str4[] = "efghi",
+    char str1[] = "abcd", str2[] = "abcd", str4[] = "efghi",
          str5[] = "";
     ck_assert_int_eq(s21_strcmp(str1, str2), strcmp(str1, str2));
-    ck_assert_int_eq(s21_strcmp(str1, str3), strcmp(str1, str3));
     ck_assert_int_eq(s21_strcmp(str1, str4), strcmp(str1, str4));
     ck_assert_int_eq(s21_strcmp(str4, str1), strcmp(str4, str1));
     ck_assert_int_eq(s21_strcmp(str5, str1), strcmp(str5, str1));
